@@ -1,0 +1,16 @@
+- name: deploy httpd server
+  hosts: node
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    # コンテナ実行時に`/sbin/init`が実行できず、systemctlが動かせない
+    # - name: start & enabled httpd
+    #   service:
+    #     name: httpd
+    #     state: started
+    #     enabled: yes
